@@ -12,7 +12,7 @@ window_height = 800
 window = pygame.display.set_mode((window_width,window_height))
 pygame.display.set_caption("Snake Game")
 
-#Create game objects
+# Create game objects
 snake = Snake(window)
 food = Food(window)
 
@@ -25,6 +25,9 @@ while running:
     
     # Clear the  window
     window.fill((0,0,0))
+
+    # Update game objects
+    snake.update()
 
     # Draw game objects
     snake.draw()
