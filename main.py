@@ -1,4 +1,5 @@
 import pygame
+from pygame import font
 from game.food import Food
 from game.snake import Snake
 
@@ -19,13 +20,14 @@ snake = Snake(window, tile_size, (tile_size, 0))  # Pass (tile_size, 0) as the s
 food = Food(window, tile_size)
 food.generate_positions(num_tile_x, num_tile_y)  # Generate initial position for the food
 
+# Set up the font for score display
+font = pygame.font.SysFont("Poppin", 36)
+
 # Game loop
 clock = pygame.time.Clock()
 fps = 10  # Specify the desired frame rate (e.g., 10 frames per second)
 running = True
 while running:
-    clock.tick(fps)  # Control the frame rate of the game
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -40,8 +42,13 @@ while running:
     snake.draw()
     food.draw()
 
+    # Display the score
+    score_text = font.render("Score: " + str(snake.score), True, (255, 255, 255))
+    window.blit(score_text, (10, 10))
+
     # Update the display
     pygame.display.update()
+    clock.tick(10)  # Control the FPS of the game
 
 # Quit the game
 pygame.quit()

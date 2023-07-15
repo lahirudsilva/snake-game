@@ -16,6 +16,7 @@ class Snake:
         self.body = [(self.x, self.y)]  # Snake's body segments
         self.moving = False  # Flag to indicate if the snake is currently moving
         self.move_counter = 0  # Counter to regulate snake movement
+        self.score = 0  # Snake's score
 
     def handle_input(self):
         # Get the state of all keyboard keys
@@ -77,6 +78,8 @@ class Snake:
             )
             # Increase the snake's length
             self.body.append((self.x, self.y))
+            # Increment the score
+            self.score += 1
 
     def update_position(self):
         if len(self.body) > 1:
