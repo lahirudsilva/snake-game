@@ -2,9 +2,7 @@
 
 This is a simple Snake Game implemented using Pygame.
 
-<div align="center">
-  <img src="assets/game_play.gif" alt="Gameplay" width="400" height="400">
-</div>
+<img src="assets/game_play.gif" alt="Gameplay" width="400" height="400">
 
 ## Instructions
 
