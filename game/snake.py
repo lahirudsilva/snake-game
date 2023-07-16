@@ -17,6 +17,7 @@ class Snake:
         self.moving = False  # Flag to indicate if the snake is currently moving
         self.move_counter = 0  # Counter to regulate snake movement
         self.score = 0  # Snake's score
+        self.game_over = False
 
     def handle_input(self):
         # Get the state of all keyboard keys
@@ -81,6 +82,15 @@ class Snake:
             # Increment the score
             self.score += 1
 
+            # Return early to avoid further checks
+            return
+
+        # Check if the snake's head collides with its own body
+        if (self.x, self.y) in self.body[:-1]:
+            # Snake collided with itself, trigger Game Over
+            self.game_over = True
+
+
     def update_position(self):
         if len(self.body) > 1:
             del self.body[0]
@@ -100,8 +110,26 @@ class Snake:
         elif self.y >= self.window_height:
             self.y = 0
 
+        # Check if the snake's head collides with its own body
+        if (self.x, self.y) in self.body[:-1]:
+            # Snake collided with itself, trigger Game Over
+            self.game_over = True
+
         # Append the new head position to the body
         self.body.append((self.x, self.y))
+
+    
+    def reset(self):
+        # Reset the snake's attributes to start a new game
+        self.x = 0
+        self.y = 0
+        self.speed_x = self.tile_size
+        self.speed_y = 0
+        self.body = [(self.x, self.y)]
+        self.moving = False
+        self.move_counter = 0
+        self.score = 0
+        self.game_over = False
 
     def draw(self):
         for segment in self.body:

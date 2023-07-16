@@ -7,7 +7,7 @@ from game.snake import Snake
 pygame.init()
 
 # Setup the game window
-tile_size = 40  # size of each tile in pixels
+tile_size = 25  # size of each tile in pixels
 window_width = 800
 window_height = 800
 num_tile_x = window_width // tile_size
@@ -35,16 +35,28 @@ while running:
     # Clear the window
     window.fill((0, 0, 0))
 
-    # Update game objects
-    snake.update(food)
+    if not snake.game_over:
+        # Update game objects
+        snake.update(food)
 
-    # Draw game objects
-    snake.draw()
-    food.draw()
+        # Draw game objects
+        snake.draw()
+        food.draw()
 
-    # Display the score
-    score_text = font.render("Score: " + str(snake.score), True, (255, 255, 255))
-    window.blit(score_text, (10, 10))
+        # Display the score
+        score_text = font.render("Score: " + str(snake.score), True, (255, 255, 255))
+        window.blit(score_text, (10, 10))
+    else:
+        # Display Game Over message
+        game_over_text = font.render("Game Over", True, (255, 255, 255))
+        restart_text = font.render("Press R to Restart", True, (255, 255, 255))
+        window.blit(game_over_text, (window_width // 2 - 100, window_height // 2 - 20))
+        window.blit(restart_text, (window_width // 2 - 120, window_height // 2 + 20))
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_r]:
+            # Restart the game if R key is pressed
+            snake.reset()
 
     # Update the display
     pygame.display.update()
