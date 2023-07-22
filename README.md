@@ -23,7 +23,7 @@ The game requires the following dependencies to be installed:
 
 To run the game, execute the following command:
 
-```python
+```sh
 python main.py
 ```
 
@@ -47,5 +47,5 @@ You can customize certain aspects of the game by modifying the code:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+[MIT](./LICENSE) &copy; [Lahiru De Silva](https://github.com/lahirudsilva).
 
